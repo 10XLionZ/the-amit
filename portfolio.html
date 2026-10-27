@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Developer Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/lucide-static@0.344.0/font/lucide.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: #151d30;
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.5);
+            --accent: #10b981;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header / Hero */
+        header {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            width: fit-content;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h1 span {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--primary-glow);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Section Layout */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background: rgba(255, 255, 255, 0.1);
+            margin-left: 1rem;
+        }
+
+        /* Matrix/Grid Layout for Metrics & Stack */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .skill-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .mini-tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Projects Bento Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .project-banner {
+            height: 8px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+        }
+
+        .project-info {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .p-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .p-link:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .cta-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HERO SECTION -->
+        <header>
+            <div class="badge">BCA Expert Developer</div>
+            <h1>Hi, I Build <span>Full-Stack Apps</span> & Intelligent Systems.</h1>
+            <p class="tagline">Production-ready Mobile Apps, Web Architectures, and Serverless Backends. Currently scaling AI integrations.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="https://github.com" class="btn btn-secondary">GitHub Profile</a>
+            </div>
+        </header>
+
+        <!-- EXPERTISE GRID -->
+        <section id="expertise">
+            <h2 class="section-title">Core Production Capability</h2>
+            <div class="skills-grid">
+                
+                <!-- Card 1 -->
+                <div class="skill-card">
+                    <div class="skill-icon">📱</div>
+                    <h3>App Development</h3>
+                    <p class="mini-tag" style="background:none; padding:0; color:var(--text-muted)">Cross-platform, Native performance, Smooth UX.</p>
+                    <div class="skill-tags">
+                        <span class="mini-tag">Flutter</span>
+                        <span class="mini-tag">React Native</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Web Architecture</h3>
+                    <p class="mini-tag" style="background:none; padding:0; color:var(--text-muted)">High-speed web systems and responsive control panels.</p>
+                    <div class="skill-tags">
+                        <span class="mini-tag">React.js</span>
+                        <span class="mini-tag">Node.js</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="skill-card">
+                    <div class="skill-icon">🔥</div>
+                    <h3>Backend & Cloud</h3>
+                    <p class="mini-tag" style="background:none; padding:0; color:var(--text-muted)">Secure auth, serverless logic, and live sync.</p>
+                    <div class="skill-tags">
+                        <span class="mini-tag">Firebase Auth</span>
+                        <span class="mini-tag">Firestore DB</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <h3>AI Integration</h3>
+                    <p class="mini-tag" style="background:none; padding:0; color:var(--text-muted)">Smart automation, LLM tools, and predictive features.</p>
+                    <div class="skill-tags">
+                        <span class="mini-tag">Python</span>
+                        <span class="mini-tag">API Integration</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+            <h2 class="section-title">Featured Production Works</h2>
+            <div class="projects-grid">
+
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-banner"></div>
+                    <div class="project-info">
+                        <h3>Advanced Full-Stack App</h3>
+                        <p>Complete application with secure role-based login, state management, and continuous cloud sync.</p>
+                        <div class="project-tech">
+                            <span class="tech-pill">Flutter</span>
+                            <span class="tech-pill">Firebase Auth</span>
+                            <span class="tech-pill">Firestore</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="p-link">Source Code &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-banner" style="background: linear-gradient(to right, var(--accent), var(--primary));"></div>
+                    <div class="project-info">
+                        <h3>AI-Powered Data Dashboard</h3>
+                        <p>Responsive web system integrating backend pipelines with intelligent automated text/data processing models.</p>
+                        <div class="project-tech">
+                            <span class="tech-pill">React.js</span>
+                            <span class="tech-pill">Node.js</span>
+                            <span class="tech-pill">Python AI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="p-link">Source Code &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>&copy; 2026 | Handcrafted with minimal code & deep logic.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
